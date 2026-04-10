@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    overscroll-behavior: none;
+}
+
+body {
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+    text-align: center;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Header */
+header {
+    margin-top: 80px;
+    padding: 30px;
+}
+
+header h1 {
+    font-size: 40px;
+}
+
+header p {
+    margin-top: 10px;
+}
+
+/* Gallery */
+.gallery {
+    margin-left: 30px ;
+    margin-right: 30px;
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: visible;
+    touch-action: pan-y;
+}
+
+/* Card */
+.card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden; /* biar gambar ikut rounded */
+    flex-shrink: 0;
+    min-width: 200px;
+    max-width: 300px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* bayangan */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card p {
+    padding: 10px;
+    font-weight: bold;
+    color: black;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+/* PROFIL KELAS */
+.profil-kelas {
+    background: rgba(255,255,255,0.2);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* PROFIL SISWA */
+.profil-siswa {
+    padding: 20px;
+}
+
+.profil-siswa h2 {
+    margin-bottom: 15px;
+}
+
+.siswa {
+    display: inline-block;
+    margin: 10px;
+    background: white;
+    color: black;
+    padding: 10px;
+    border-radius: 15px;
+    width: 150px;
+    transition: 0.3s;
+}
+
+.siswa img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.siswa:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    margin-top: 200px;
+    font-size: 12px;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+}
