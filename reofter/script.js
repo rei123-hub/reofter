@@ -1,3 +1,21 @@
+document.addEventListener("click", function (e) {
+    const nav = document.getElementById("nav-links");
+    const toggle = document.querySelector(".menu-toggle");
+
+    const isClickInsideMenu = nav.contains(e.target);
+    const isClickHamburger = toggle.contains(e.target);
+
+    if (!isClickInsideMenu && !isClickHamburger) {
+        nav.classList.remove("active");
+        toggle.classList.remove("active");
+    }
+});
+
+function toggleMenu(el) {
+    document.getElementById("nav-links").classList.toggle("active");
+    el.classList.toggle("active");
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const gallery = document.getElementById("gallery");
@@ -6,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("modal");
     const modalImg = document.getElementById("modalImg");
     const closeBtn = document.querySelector(".close");
-
 
     function getCardWidth() {
         const card = gallery.querySelector(".card");
@@ -71,3 +88,33 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 });
+
+function zoomCard(card, event) {
+    event.stopPropagation(); // penting
+
+    // overlay
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+
+    // clone card
+    const clone = card.cloneNode(true);
+    clone.classList.add("preview");
+    
+    // hapus onclick dari clone
+    clone.onclick = null;
+    clone.removeAttribute("onclick");
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(clone);
+
+    // animasi muncul
+    setTimeout(() => {
+        clone.classList.add("show");
+    }, 10);
+
+    // klik luar = tutup
+    overlay.onclick = function () {
+        clone.remove();
+        overlay.remove();
+    };
+}
