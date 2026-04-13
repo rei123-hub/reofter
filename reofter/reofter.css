@@ -37,6 +37,7 @@ body {
 
 /* LOGO */
 .logo {
+    text-decoration: none;
     color: white;
     font-size: 22px;
     font-weight: bold;
@@ -346,17 +347,7 @@ header p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 998;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 9999;
 }
 
@@ -366,11 +357,10 @@ header p {
     left: 50%;
     transform: translate(-50%, -50%) scale(0.8);
     
-    width: 90vw;          /* mengikuti lebar layar */
-    max-width: 500px;     /* batas maksimal biar gak terlalu gede */
+    width: clamp(250px, 70vw, 400px);
+    max-width: 400px;     /* batas maksimal biar gak terlalu gede */
     
-    max-height: 90vh;     /* mengikuti tinggi layar */
-    overflow-y: auto;     /* scroll kalau konten kepanjangan */
+    max-height: 80vh;     /* mengikuti tinggi layar */
 
     background: white;
     border-radius: 15px;
