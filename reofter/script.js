@@ -89,32 +89,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+let isZoomed = false;
+
 function zoomCard(card, event) {
-    event.stopPropagation(); // penting
+    event.stopPropagation();
 
-    // overlay
-    const overlay = document.createElement("div");
-    overlay.classList.add("overlay");
+    if (isZoomed) return;
+    isZoomed = true;
 
-    // clone card
+    const rect = card.getBoundingClientRect();
+
     const clone = card.cloneNode(true);
-    clone.classList.add("preview");
+clone.classList.add("clone");
+
+// hapus event
+clone.removeAttribute("onclick");
+clone.onclick = null;
+
+Object.assign(clone.style, {
+    top: rect.top + "px",
+    left: rect.left + "px",
+    width: rect.width + "px",
+    height: rect.height + "px"
+});
+
+document.body.appendChild(clone);
+
+// ✅ BUAT CLOSE DI SINI (BUKAN DI BAWAH)
+const closeBtn = document.createElement("span");
+closeBtn.className = "close-btn";
+closeBtn.innerHTML = "×";
+
+clone.appendChild(closeBtn);
+
+const overlay = document.createElement("div");
+overlay.className = "overlay";
+document.body.appendChild(overlay);
+
+// klik tombol close
+closeBtn.onclick = (e) => {
+    e.stopPropagation(); // 🔥 penting banget
+    overlay.click();
+};
+
+requestAnimationFrame(() => {
+    clone.classList.add("active");
+    overlay.classList.add("show");
+});
+
+overlay.onclick = (e) => {
+    e.stopPropagation();
     
-    // hapus onclick dari clone
-    clone.onclick = null;
-    clone.removeAttribute("onclick");
+    clone.classList.remove("active");
+    overlay.classList.remove("show");
 
-    document.body.appendChild(overlay);
-    document.body.appendChild(clone);
-
-    // animasi muncul
     setTimeout(() => {
-        clone.classList.add("show");
-    }, 10);
-
-    // klik luar = tutup
-    overlay.onclick = function () {
         clone.remove();
         overlay.remove();
-    };
+        isZoomed = false;
+    }, 300);
+};
 }
