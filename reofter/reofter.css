@@ -429,10 +429,25 @@ header p {
 }
 
 .contact {
-    padding: 80px 20px 200px;
-    background: #00000069;
-    color: white;
-    text-align: center;
+    padding: 100px 20px 200px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.contact {
+    animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .contact h2 {
@@ -458,35 +473,55 @@ header p {
 
 .contact input,
 .contact textarea {
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 10px;
     border: none;
     outline: none;
-}
-
-.contact textarea {
-    resize: none;
-    height: 100px;
-}
-
-.contact button {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #00adb5;
+    background: rgba(255,255,255,0.2);
     color: white;
-    cursor: pointer;
     transition: 0.3s;
 }
 
+.contact input::placeholder,
+.contact textarea::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.contact input:focus,
+.contact textarea:focus {
+    background: rgba(255,255,255,0.3);
+}
+
+.contact button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #00adb5, #00f7ff);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
 .contact button:hover {
-    background: #008c92;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00f7ff;
 }
 
 /* INFO */
+.contact form,
 .contact-info {
-    max-width: 250px;
-    text-align: left;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.contact form:hover,
+.contact-info:hover {
+    transform: translateY(-5px);
 }
 
 .contact-info h3 {
