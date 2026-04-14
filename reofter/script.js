@@ -150,3 +150,30 @@ overlay.onclick = (e) => {
     }, 300);
 };
 }
+
+// email
+(function(){
+    emailjs.init("tzkZmYsZxzDpNdlxV");
+})();
+
+function kirimEmail(e) {
+    e.preventDefault();
+
+    const btn = document.querySelector("button");
+    btn.innerText = "Mengirim...";
+
+    emailjs.send("service_yf8ne1", "template_v4xhuob", {
+        nama: document.querySelector('input[name="nama"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        pesan: document.querySelector('textarea[name="pesan"]').value
+    })
+    .then(() => {
+        alert("Pesan berhasil dikirim!");
+        document.querySelector("form").reset();
+        btn.innerText = "Kirim";
+    }, (error) => {
+        console.log(error);
+        alert("Gagal mengirim!");
+        btn.innerText = "Kirim";
+    });
+}
